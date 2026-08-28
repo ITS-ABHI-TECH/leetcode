@@ -1,10 +1,16 @@
 class Solution {
   public:
+    vector<int> dp;
+    int solve(int i){
+        if(i<=1) return i;
+        if(dp[i]!=-1) return dp[i];
+        dp[i] = solve(i-1)+solve(i-2);
+        return dp[i];
+    }
     int nthFibonacci(int n) {
         // code here
-        if(n==1) return 1;
-        if(n==0) return 0;
-        return nthFibonacci(n-1)+nthFibonacci(n-2);
+        dp.assign(n+1,-1);
+        solve(n);
     }
 };
 
